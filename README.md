@@ -50,7 +50,7 @@ HalloWelt/
 └── test/          ← Für Tests (jetzt leer)
 ```
 
-👉 **Wichtig für Anfänger:**
+👉 **Wichtig für Anfänger:**  
 Du arbeitest fast immer **nur in `src/main.cpp`**.
 
 ---
@@ -92,7 +92,7 @@ void loop() {
 
 ---
 
-## ▶️ Projekt bauen und hochladen
+## ▶️ Projekt bauen und hochladen (Kurzfassung)
 
 1. Arduino per USB anschließen
 2. In VS Code unten links:
@@ -104,55 +104,77 @@ Wenn die LED blinkt: **Erfolg 🎉**
 
 ---
 
-## 🛠️ Installation (von GitHub bis Arduino Nano ESP32)
+## 📥 Clonen oder Download des Projekts
 
-### 1️⃣ Projekt von GitHub herunterladen
+### Variante A – Repository clonen (empfohlen)
 
-#### Variante A – mit Git
 ```bash
 git clone https://github.com/DEIN_GITHUB_NAME/Hallo-Welt-Arduino-Nano-ESP32.git
 ```
 
-#### Variante B – ohne Git (ZIP)
-- GitHub → Code → Download ZIP
-- ZIP entpacken
+Danach den Ordner in VS Code öffnen.
 
 ---
 
-### 2️⃣ Projekt in VS Code öffnen
-- VS Code → Datei → Ordner öffnen
+### Variante B – Download als ZIP
+
+1. GitHub-Repository im Browser öffnen
+2. **Code → Download ZIP** klicken
+3. ZIP-Datei entpacken
+4. Ordner z. B. nach `HalloWelt` verschieben
+
+---
+
+## 🛠️ Installation Arduino Nano ESP32
+
+### 1️⃣ Projekt in Visual Studio Code öffnen
+- VS Code starten
+- **Datei → Ordner öffnen**
 - Projektordner auswählen
 
+⏳ Beim ersten Öffnen installiert PlatformIO automatisch benötigte Dateien.
+
 ---
 
-### 3️⃣ PlatformIO installieren
-- VS Code → Extensions
-- „PlatformIO IDE“ installieren
+### 2️⃣ PlatformIO installieren (falls noch nicht vorhanden)
+- VS Code → **Extensions**
+- Nach **PlatformIO IDE** suchen
+- Installieren
 - VS Code neu starten
 
 ---
 
-### 4️⃣ Arduino anschließen
-- Arduino Nano ESP32 per USB anschließen
+### 3️⃣ Arduino Nano ESP32 anschließen
+- Board per **USB-Datenkabel** anschließen
+- Betriebssystem erkennt das Gerät automatisch
 
 ---
 
-### 5️⃣ Build & Upload
-- ✔️ Build
-- ➡️ Upload
+### 4️⃣ Projekt bauen (Build)
+- In VS Code unten links auf **✔ Build** klicken
+- Warten bis **SUCCESS** erscheint
 
 ---
 
-### 6️⃣ Ergebnis
-- LED blinkt → **fertig** 🎉
+### 5️⃣ Projekt hochladen (Upload)
+- In VS Code unten links auf **➡️ Upload** klicken
+- Upload abwarten
+- Board startet automatisch neu
+
+---
+
+### 6️⃣ Ergebnis prüfen
+- Eingebaute LED blinkt im 1‑Sekunden‑Takt
+
+🎉 **Installation erfolgreich abgeschlossen**
 
 ---
 
 ## 🚀 Nächste Schritte
 
-- Blink-Zeit ändern
+- Blink-Zeit ändern (`delay(500)`)
 - Serielle Ausgabe hinzufügen
 - Sensoren anschließen
 - WLAN-Funktionen nutzen
 
-Dieses Projekt ist die **Basis für alles Weitere**.
+Dieses Projekt ist die **Basis für alle weiteren Arduino‑Nano‑ESP32‑Projekte**.
