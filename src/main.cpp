@@ -1,24 +1,36 @@
 #include <Arduino.h>
 
-unsigned long timer = 0;
+#ifndef LED_ON_MS
+  #define LED_ON_MS 250
+#endif
+
+#ifndef LED_OFF_MS
+  #define LED_OFF_MS 500
+#endif
+
+
 const int LED_PIN = LED_BUILTIN;
+
+unsigned long timer = 0;
+bool ledState = false;
 
 void setup() {
   pinMode(LED_PIN, OUTPUT);
+  timer = millis();
 }
 
 void loop() {
-  if (millis() - timer > 250) {
+  unsigned long now = millis();
+
+  if (!ledState && now - timer >= LED_ON_MS) {
     digitalWrite(LED_PIN, HIGH);
+    ledState = true;
+    timer = now;
   }
 
-  if (millis() - timer > 500) {
+  if (ledState && now - timer >= LED_OFF_MS) {
     digitalWrite(LED_PIN, LOW);
-    timer = millis();
-  }
-
-  // Schutz gegen millis()-Überlauf
-  if (timer > millis()) {
-    timer = 0;
+    ledState = false;
+    timer = now;
   }
 }
