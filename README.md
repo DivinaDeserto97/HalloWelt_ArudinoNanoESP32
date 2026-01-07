@@ -38,37 +38,79 @@ Wenn das funktioniert, bist du **bereit für echte Projekte**.
 
 ```
 HalloWelt/
+├── .pio/            ← wird automatisch von PlatformIO erstellt
+├── .vscode/         ← VS Code Einstellungen (optional)
+├── include/         ← Für spätere Header-Dateien
+│   └── README.md    ← Für Tests (jetzt leer) 
 │
-├── .gitignore
-├── platformio.ini
+├── lib/             ← Für spätere Bibliotheken
+│   └── README.md    ← Für Tests (jetzt leer) 
 │
 ├── src/
-│   └── main.cpp   ← HIER ist der eigentliche Code
+│   └── main.cpp     ← HIER ist der eigentliche Code
 │
-├── include/       ← Für spätere Header-Dateien
-├── lib/           ← Für spätere Bibliotheken
-└── test/          ← Für Tests (jetzt leer)
+├── scripts/
+│   └── load_env.py  ← liest ".env" und gibt Werte an den Compiler weiter
+│
+├── test/            ← später für Tests
+│   └── README.md
+│
+├── .env               ← DEINE lokalen Werte (nicht ins Git!)
+├── .gitignore         ← sperrt z.B. .env
+├── platformio.ini     ← PlatformIO Konfiguration
+└── README.md          ← Für Tests (jetzt leer)
 ```
 
+
 👉 **Wichtig für Anfänger:**  
-Du arbeitest fast immer **nur in `src/main.cpp`**.
+Du arbeitest fast immer **nur in `src/main.cpp`** und in **`.env`**.
+
+---
+
+## 🔒 .env – Blink-Zeiten einstellen (ohne Code ändern)
+
+Erstelle / bearbeite die Datei **`.env`** im Projekt-Root:
+
+```env
+LED_ON_MS=250
+LED_OFF_MS=500
+```
 
 ---
 
 ## ⚙️ platformio.ini – was steht hier drin?
 
-Diese Datei sagt PlatformIO:
-- welches Board benutzt wird
-- welche Plattform
-- welches Framework
+⚙️ platformio.ini – was steht hier drin?
 
-Beispiel:
+Diese Datei sagt PlatformIO:
+
+welches Board benutzt wird
+
+welche Plattform
+
+welches Framework
+
+wie hochgeladen wird
+
+dass .env über ein Script geladen wird
+
+Wichtig: Der Nano ESP32 kann beim Reset den COM-Port wechseln.
+Darum ist es stabiler, wenn man über HWID (VID/PID) arbeitet.
+
+Beispiel (verkürzt):
 
 ```ini
 [env:arduino_nano_esp32]
 platform = espressif32
 board = arduino_nano_esp32
 framework = arduino
+
+upload_protocol = esptool
+upload_port = HWID:2341:0070
+monitor_port = HWID:2341:0070
+monitor_speed = 115200
+
+extra_scripts = pre:scripts/load_env.py
 ```
 
 ---
@@ -102,6 +144,24 @@ void loop() {
 
 Wenn die LED blinkt: **Erfolg 🎉**
 
+---
+🔎 COM-Port / Upload-Probleme (kurz)
+
+Wenn der Upload wegen COM/Port-Fehlern zickt:
+
+1) Gerät anzeigen lassen (Windows)
+
+Im VS Code Terminal:
+```bash
+C:\Users\tobia\.platformio\penv\Scripts\platformio.exe device list
+```
+2) Wichtig
+
+- Serial Monitor schließen, bevor du uploadest
+
+- anderes USB-Datenkabel probieren, wenn es wackelt
+
+- anderer USB-Port am PC (hinten oft stabiler)
 ---
 
 ## 📥 Clonen oder Download des Projekts
