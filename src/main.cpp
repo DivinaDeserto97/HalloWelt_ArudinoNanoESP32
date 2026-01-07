@@ -8,11 +8,11 @@ void setup() {
 }
 
 void loop() {
-  if (millis() - timer > 500) {
+  if (millis() - timer > 250) {
     digitalWrite(LED_PIN, HIGH);
   }
 
-  if (millis() - timer > 1000) {
+  if (millis() - timer > 500) {
     digitalWrite(LED_PIN, LOW);
     timer = millis();
   }
